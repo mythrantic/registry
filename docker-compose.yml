@@ -4,6 +4,9 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: registry
+    networks:
+      - mcp-network
+      - dokploy-network
     depends_on:
       postgres:
         condition: service_healthy
@@ -44,3 +47,12 @@ services:
     expose:
       - "5432"
     restart: "unless-stopped"
+    networks:
+      - mcp-network
+
+networks:
+  mcp-network:
+    name: mcp-network
+    driver: bridge
+  dokploy-network:
+    external: true
