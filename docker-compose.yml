@@ -4,6 +4,10 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: registry
+    # Explicit public DNS servers to avoid 127.0.0.11 NXDOMAIN issues
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
     networks:
       - mcp-network
       - dokploy-network
@@ -31,6 +35,8 @@ services:
     volumes:
       - ./data:/data:ro
     restart: "unless-stopped"
+  # Optional lightweight init-style probe service could be added if needed:
+  # See docs/registry-dns-troubleshooting.md for manual verification steps.
 
   postgres:
     image: postgres:16-alpine
