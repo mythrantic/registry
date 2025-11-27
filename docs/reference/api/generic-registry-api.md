@@ -3,7 +3,7 @@
 A standardized RESTful HTTP API for MCP registries to provide consistent endpoints for discovering and retrieving MCP servers.
 
 Also see:
-- For guidance consuming the API, see the [consuming guide](../../guides/consuming/use-rest-api.md).
+- For authentication and authorization, see the [registry authorization specification](./registry-authorization.md).
 
 ## Browse the Complete API Specification
 
@@ -18,12 +18,13 @@ The official registry has some more endpoints and restrictions on top of this. S
 - **`GET /v0/servers/{serverName}/versions`** - List all versions of a server
 - **`GET /v0/servers/{serverName}/versions/{version}`** - Get specific version of server. Use the special version `latest` to get the latest version.
 - **`POST /v0/publish`** - Publish new server (optional, registry-specific authentication)
+- **`DELETE /v0/servers/{serverName}/versions/{version}`** - Delete specific server version (optional, not implemented by official registry)
 
 Server names and version strings should be URL-encoded in paths.
 
 ### Authentication
-- **Read operations**: No authentication required
-- **Write operations**: Registry-specific authentication (if supported)
+
+No authentication required by default. Subregistries may optionally require authentication following the [registry authorization specification](./registry-authorization.md).
 
 ### Content Type
 All requests and responses use `application/json`
