@@ -3,6 +3,10 @@ title: The MCP Registry
 sidebarTitle: About
 ---
 
+<Note>
+  The MCP Registry is currently in preview. Breaking changes or data resets may occur before general availability. If you encounter any issues, please report them on [GitHub](https://github.com/modelcontextprotocol/registry/issues).
+</Note>
+
 The MCP Registry is the official centralized metadata repository for publicly accessible MCP servers, backed by major trusted contributors to the MCP ecosystem such as Anthropic, GitHub, PulseMCP, and Microsoft.
 
 The MCP Registry provides:
@@ -12,7 +16,7 @@ The MCP Registry provides:
 - A REST API for MCP clients and aggregators to discover available servers
 - Standardized installation and configuration information
 
-Server metadata is stored in a standardized [`server.json` format](https://github.com/modelcontextprotocol/registry/blob/main/docs/reference/server-json/server.schema.json), which contains:
+Server metadata is stored in a standardized [`server.json` format](https://github.com/modelcontextprotocol/registry/blob/main/docs/reference/server-json/draft/server.schema.json), which contains:
 
 - The server's unique name (e.g., `io.github.user/server-name`)
 - Where to locate the server (e.g., npm package name, remote server URL)
