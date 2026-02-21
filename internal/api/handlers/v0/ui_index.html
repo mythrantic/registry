@@ -3,49 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official MCP Registry</title>
+    <title>samletnorge MCP Registry</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="samletnorge MCP Registry - Discover and explore Model Context Protocol servers. A curated registry of MCP servers for seamless integration.">
+    <meta name="keywords" content="MCP, Model Context Protocol, samletnorge, registry, servers, AI, machine learning">
+    <meta name="author" content="samletnorge">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="samletnorge MCP Registry">
+    <meta property="og:description" content="Discover and explore Model Context Protocol servers in the samletnorge registry.">
+    <meta property="og:site_name" content="samletnorge">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="samletnorge MCP Registry">
+    <meta name="twitter:description" content="Discover and explore Model Context Protocol servers in the samletnorge registry.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://registry.samletnorge.com">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #7c3aed;
+            --accent-color: #06b6d4;
+            --background-start: #0f172a;
+            --background-end: #1e293b;
+            --card-bg: #ffffff;
+            --card-border: #e5e7eb;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --text-light: #9ca3af;
+        }
+        
         body {
-            background: linear-gradient(to bottom, #ffffff 0%, #f9fafb 100%);
+            background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 100%);
+            min-height: 100vh;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .search-glow {
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .content-wrapper {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
-    <div class="max-w-7xl mx-auto px-4 py-8 md:py-16 flex-1 w-full">
-        <!-- Header -->
-        <header class="mb-8 pb-8 border-b">
-            <h1 class="text-4xl font-bold text-gray-900 mb-2">Official MCP Registry</h1>
-            <p class="text-gray-600 text-lg mb-6">Discover Model Context Protocol servers</p>
-            <div class="flex gap-6 text-sm">
-                <a href="https://github.com/modelcontextprotocol/registry" target="_blank" class="text-blue-600 hover:text-blue-700 font-medium">GitHub</a>
-                <a href="https://github.com/modelcontextprotocol/registry/tree/main/docs" target="_blank" class="text-blue-600 hover:text-blue-700 font-medium">Docs</a>
-                <a href="/docs" class="text-blue-600 hover:text-blue-700 font-medium">API Reference</a>
-            </div>
-        </header>
+    <div class="max-w-7xl mx-auto px-4 py-8 md:py-12 flex-1 w-full">
+        <div class="content-wrapper p-6 md:p-12">
+            <!-- Header -->
+            <header class="mb-10 pb-8 border-b border-gray-200">
+                <div class="flex items-center gap-4 mb-4">
+                    <h1 class="text-5xl font-bold gradient-text">samletnorge</h1>
+                </div>
+                <h2 class="text-3xl font-semibold text-gray-800 mb-3">MCP Registry</h2>
+                <p class="text-gray-600 text-lg mb-6 max-w-2xl">Discover and explore Model Context Protocol servers in our curated registry</p>
+                <div class="flex gap-6 text-sm flex-wrap">
+                    <a href="https://github.com/samletnorge/registry" target="_blank" class="nav-link text-blue-600 hover:text-blue-700 font-medium">GitHub</a>
+                    <a href="https://github.com/samletnorge/registry/tree/main/docs" target="_blank" class="nav-link text-blue-600 hover:text-blue-700 font-medium">Docs</a>
+                    <a href="/docs" class="nav-link text-blue-600 hover:text-blue-700 font-medium">API Reference</a>
+                </div>
+            </header>
 
         <!-- Recently Updated -->
         <div id="recently-updated" class="hidden mb-8">
-            <h2 class="text-xl font-semibold text-gray-900 mb-4">Recently Updated</h2>
-            <div id="recent-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-5 flex items-center gap-2">
+                <span class="inline-block w-1 h-6 bg-gradient-to-b from-blue-600 to-purple-600 rounded"></span>
+                Recently Updated
+            </h2>
+            <div id="recent-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 <!-- Populated by JS -->
             </div>
         </div>
 
         <!-- Search and Filter -->
-        <div class="mb-8 space-y-3">
+        <div class="mb-8 space-y-4">
             <div class="relative">
                 <input
                     type="search"
                     id="search"
                     placeholder="Search servers by name..."
-                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    class="w-full px-5 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-blue-500 search-glow transition-all"
                     autofocus
                 >
-                <span id="search-loading" class="hidden absolute right-3 top-2.5 text-gray-400">Searching...</span>
+                <span id="search-loading" class="hidden absolute right-4 top-3.5 text-gray-400">Searching...</span>
             </div>
-            <label class="flex items-center text-sm text-gray-600">
-                <input type="checkbox" id="latest-only" class="mr-2" checked>
+            <label class="flex items-center text-sm text-gray-600 cursor-pointer">
+                <input type="checkbox" id="latest-only" class="mr-2 w-4 h-4 text-blue-600 rounded" checked>
                 <span>Show only latest versions</span>
             </label>
         </div>
@@ -63,38 +153,74 @@
 
         <!-- Server List -->
         <div id="server-list" class="hidden">
-            <div id="server-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div id="server-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 <!-- Populated by JS -->
             </div>
 
             <!-- Pagination -->
-            <div class="mt-8 flex justify-between items-center">
+            <div class="mt-10 flex justify-between items-center">
                 <button
                     id="prev-btn"
-                    class="px-5 py-2.5 text-sm font-medium border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                    class="px-6 py-3 text-sm font-medium bg-white border-2 border-gray-300 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:border-blue-400 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
                     disabled
                 >
-                    Previous
+                    ← Previous
                 </button>
-                <span class="text-sm text-gray-600 font-medium" id="page-info"></span>
+                <span class="text-sm text-gray-600 font-medium px-4 py-2 bg-gray-50 rounded-lg" id="page-info"></span>
                 <button
                     id="next-btn"
-                    class="px-5 py-2.5 text-sm font-medium border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                    class="px-6 py-3 text-sm font-medium bg-white border-2 border-gray-300 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:border-blue-400 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
                 >
-                    Next
+                    Next →
                 </button>
             </div>
         </div>
     </div>
+    </div>
 
     <!-- Footer -->
-    <footer class="mt-8 bg-gray-50 border-t py-4">
+    <footer class="mt-12 bg-gradient-to-r from-slate-900 to-slate-800 border-t border-slate-700 py-8">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between items-center text-sm text-gray-600">
+            <div class="grid md:grid-cols-3 gap-8 mb-6">
+                <!-- Brand Section -->
                 <div>
-                    Built in the open by <a href="https://github.com/modelcontextprotocol/registry" target="_blank" class="text-blue-600 hover:underline">MCP contributors</a>
+                    <h3 class="text-xl font-bold gradient-text mb-3">samletnorge</h3>
+                    <p class="text-gray-400 text-sm mb-3">
+                        Building the future of AI integration with Model Context Protocol servers.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="https://github.com/samletnorge" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
                 </div>
-                <button id="debug-btn" class="text-blue-600 hover:underline">
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/docs" class="text-gray-400 hover:text-blue-400 transition-colors">Documentation</a></li>
+                        <li><a href="https://github.com/samletnorge/registry" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors">GitHub Repository</a></li>
+                        <li><a href="https://github.com/samletnorge/registry/issues" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors">Report Issues</a></li>
+                    </ul>
+                </div>
+                
+                <!-- About -->
+                <div>
+                    <h4 class="text-white font-semibold mb-3">About</h4>
+                    <p class="text-gray-400 text-sm">
+                        This registry is maintained by samletnorge, providing a centralized hub for discovering and managing Model Context Protocol servers.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="pt-6 border-t border-slate-700 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
+                <div>
+                    © 2025 <span class="gradient-text font-semibold">samletnorge</span>. Built with passion for the MCP community.
+                </div>
+                <button id="debug-btn" class="text-blue-400 hover:text-blue-300 transition-colors">
                     Server: <span id="server-name">Production</span> (<span id="version-info">...</span>)
                 </button>
             </div>
@@ -281,7 +407,7 @@
                 const meta = item._meta?.['io.modelcontextprotocol.registry/official'];
 
                 const card = document.createElement('div');
-                card.className = 'bg-blue-50 border border-blue-200 rounded-lg overflow-hidden hover:border-blue-400 hover:shadow-md transition-all flex flex-col';
+                card.className = 'bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 rounded-2xl overflow-hidden hover:border-blue-400 hover:shadow-2xl card-hover flex flex-col';
 
                 const header = document.createElement('div');
                 header.className = 'cursor-pointer p-5 flex-1';
@@ -346,7 +472,7 @@
                 const meta = item._meta?.['io.modelcontextprotocol.registry/official'];
 
                 const card = document.createElement('div');
-                card.className = 'bg-white border border-gray-200 rounded-lg overflow-hidden hover:border-blue-300 hover:shadow-md transition-all flex flex-col';
+                card.className = 'bg-white border-2 border-gray-200 rounded-2xl overflow-hidden hover:border-blue-400 hover:shadow-xl card-hover flex flex-col';
 
                 const header = document.createElement('div');
                 header.className = 'cursor-pointer p-5 flex-1';
