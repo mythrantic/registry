@@ -24,53 +24,119 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            --color-bg: #e0e5ec;
-            --color-text: #1a1a1a;
-            --color-text-secondary: #4a4a4a;
+            --color-bg-light: #e0e5ec;
+            --color-bg-dark: #2a2d35;
+            --color-text-light: #1a1a1a;
+            --color-text-dark: #e0e5ec;
+            --color-text-secondary-light: #4a4a4a;
+            --color-text-secondary-dark: #a0a5b0;
             --color-accent: #3b82f6;
             --color-white: #ffffff;
             --color-black: #000000;
-            --shadow-light: #ffffff;
-            --shadow-dark: #a3b1c6;
+            --shadow-light-outer: rgba(255, 255, 255, 0.5);
+            --shadow-dark-outer: rgba(0, 0, 0, 0.5);
+            --shadow-light-inner: rgba(255, 255, 255, 0.5);
+            --shadow-dark-inner: rgba(0, 0, 0, 0.5);
         }
         
         body {
-            background: var(--color-bg);
-            color: var(--color-text);
+            background: linear-gradient(135deg, var(--color-bg-light) 0%, var(--color-bg-dark) 100%);
+            color: var(--color-text-light);
+            min-height: 100vh;
         }
         
-        /* Neomorphism styles */
+        /* Neomorphism styles with smooth animations */
         .neo-card {
-            background: var(--color-bg);
-            box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
-            border-radius: 16px;
-            transition: all 0.3s ease;
+            background: var(--color-bg-light);
+            box-shadow: var(--shadow-dark-outer) 0.33rem 0.33rem 0.6rem,
+                        var(--shadow-light-outer) -0.33rem -0.33rem 0.6rem;
+            border-radius: 1rem;
+            transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+            position: relative;
+        }
+        
+        .neo-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-light-outer) -0.33rem -0.33rem 0.6rem;
+            transition: box-shadow 0.3s ease-in-out;
+            pointer-events: none;
         }
         
         .neo-card:hover {
-            box-shadow: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light);
+            box-shadow: var(--shadow-dark-outer) 0 0 0;
+            transition: box-shadow 0.15s ease-out;
+            transform: translateY(0.15rem);
+        }
+        
+        .neo-card:hover::before {
+            box-shadow: var(--shadow-light-outer) 0 0 0;
+            transition: box-shadow 0.15s ease-out;
         }
         
         .neo-card-inset {
-            background: var(--color-bg);
-            box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
-            border-radius: 12px;
+            background: var(--color-bg-light);
+            box-shadow: inset var(--shadow-dark-inner) 0.25rem 0.25rem 0.6rem,
+                        inset var(--shadow-light-inner) -0.25rem -0.25rem 0.6rem;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 1rem;
         }
         
         .neo-button {
-            background: var(--color-bg);
-            box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
-            border-radius: 12px;
-            transition: all 0.2s ease;
+            background: radial-gradient(circle at 50% 50%, 
+                        var(--shadow-light-outer) 15%, 
+                        transparent 30%, 
+                        var(--shadow-dark-outer));
+            background-color: var(--color-bg-light);
+            background-position: -4rem -4rem;
+            background-size: 200% 200%;
+            box-shadow: var(--shadow-dark-outer) 0.33rem 0.33rem 0.6rem;
+            border-radius: 0.75rem;
+            transition: background 0.3s ease-in-out, 
+                        box-shadow 0.15s 0.15s ease-in-out,
+                        transform 0.3s ease-in-out;
             border: none;
+            position: relative;
+        }
+        
+        .neo-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow-light-outer) -0.33rem -0.33rem 0.6rem;
+            transition: box-shadow 0.15s 0.15s ease-in-out;
+            pointer-events: none;
         }
         
         .neo-button:hover:not(:disabled) {
-            box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+            background-position: -2rem -2rem;
+            box-shadow: var(--shadow-dark-outer) 0 0 0;
+            transition: background 0.3s ease-in-out, 
+                        box-shadow 0.3s ease-in-out;
+            transform: translateY(0.15rem);
+        }
+        
+        .neo-button:hover:not(:disabled)::before {
+            box-shadow: var(--shadow-light-outer) 0 0 0;
+            transition: box-shadow 0.3s ease-in-out;
         }
         
         .neo-button:active:not(:disabled) {
-            box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+            box-shadow: inset var(--shadow-dark-inner) 0.25rem 0.25rem 0.6rem;
+        }
+        
+        .neo-button:active:not(:disabled)::before {
+            box-shadow: inset var(--shadow-light-inner) -0.25rem -0.25rem 0.6rem;
         }
         
         .neo-button:disabled {
@@ -79,23 +145,38 @@
         }
         
         .neo-input {
-            background: var(--color-bg);
-            box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
-            border-radius: 12px;
+            background: var(--color-bg-light);
+            box-shadow: inset var(--shadow-dark-inner) 0.25rem 0.25rem 0.6rem,
+                        inset var(--shadow-light-inner) -0.25rem -0.25rem 0.6rem;
+            border-radius: 0.75rem;
             border: none;
-            color: var(--color-text);
+            color: var(--color-text-light);
+            transition: box-shadow 0.15s ease-in-out;
         }
         
         .neo-input:focus {
             outline: none;
-            box-shadow: inset 6px 6px 12px var(--shadow-dark), inset -6px -6px 12px var(--shadow-light);
+            box-shadow: inset var(--shadow-dark-inner) 0.35rem 0.35rem 0.8rem,
+                        inset var(--shadow-light-inner) -0.35rem -0.35rem 0.8rem;
         }
         
         .neo-accent-card {
-            background: linear-gradient(135deg, var(--color-bg) 0%, #d0d7e2 100%);
-            box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
-            border-radius: 16px;
+            background: radial-gradient(circle at 40% 40%, 
+                        var(--shadow-light-outer), 
+                        transparent, 
+                        var(--shadow-dark-outer));
+            background-color: var(--color-bg-light);
+            box-shadow: var(--shadow-dark-outer) 0.33rem 0.33rem 0.6rem;
+            border-radius: 1rem;
             border-left: 4px solid var(--color-accent);
+            transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+            position: relative;
+        }
+        
+        .neo-accent-card:hover {
+            box-shadow: var(--shadow-dark-outer) 0 0 0;
+            transition: box-shadow 0.15s ease-out;
+            transform: translateY(0.15rem);
         }
         
         .text-accent {
@@ -105,6 +186,16 @@
         .brand-text {
             color: var(--color-black);
             font-weight: 700;
+        }
+        
+        /* Dark sections */
+        .dark-section {
+            background: var(--color-bg-dark);
+            color: var(--color-text-dark);
+        }
+        
+        .dark-section .brand-text {
+            color: var(--color-white);
         }
     </style>
 </head>
@@ -187,12 +278,12 @@
     </div>
 
     <!-- Footer -->
-    <footer class="mt-12 py-8 neo-card-inset">
+    <footer class="mt-12 py-8 dark-section">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                 <div>
                     <h3 class="font-bold brand-text mb-2">samletnorge</h3>
-                    <p class="text-sm" style="color: var(--color-text-secondary);">Building the future of Model Context Protocol server discovery.</p>
+                    <p class="text-sm" style="color: var(--color-text-secondary-dark);">Building the future of Model Context Protocol server discovery.</p>
                 </div>
                 <div>
                     <h3 class="font-bold brand-text mb-2">Resources</h3>
@@ -210,8 +301,8 @@
                     </ul>
                 </div>
             </div>
-            <div class="border-t pt-4" style="border-color: var(--shadow-dark);">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-3 text-sm" style="color: var(--color-text-secondary);">
+            <div class="border-t pt-4" style="border-color: rgba(255, 255, 255, 0.1);">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-3 text-sm" style="color: var(--color-text-secondary-dark);">
                     <div>
                         © 2026 <span class="brand-text">samletnorge</span>. Powered by the MCP community.
                     </div>
