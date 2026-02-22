@@ -24,12 +24,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            --color-bg-light: #e0e5ec;
-            --color-bg-dark: #2a2d35;
-            --color-text-light: #1a1a1a;
-            --color-text-dark: #e0e5ec;
-            --color-text-secondary-light: #4a4a4a;
-            --color-text-secondary-dark: #a0a5b0;
+            --color-bg: #e0e5ec;
+            --color-text: #1a1a1a;
+            --color-text-secondary: #4a4a4a;
             --color-accent: #3b82f6;
             --color-white: #ffffff;
             --color-black: #000000;
@@ -40,14 +37,14 @@
         }
         
         body {
-            background: linear-gradient(135deg, var(--color-bg-light) 0%, var(--color-bg-dark) 100%);
-            color: var(--color-text-light);
+            background: var(--color-bg);
+            color: var(--color-text);
             min-height: 100vh;
         }
         
         /* Neomorphism styles with smooth animations */
         .neo-card {
-            background: var(--color-bg-light);
+            background: var(--color-bg);
             box-shadow: var(--shadow-dark-outer) 0.33rem 0.33rem 0.6rem,
                         var(--shadow-light-outer) -0.33rem -0.33rem 0.6rem;
             border-radius: 1rem;
@@ -80,7 +77,7 @@
         }
         
         .neo-card-inset {
-            background: var(--color-bg-light);
+            background: var(--color-bg);
             box-shadow: inset var(--shadow-dark-inner) 0.25rem 0.25rem 0.6rem,
                         inset var(--shadow-light-inner) -0.25rem -0.25rem 0.6rem;
             border-radius: 0.75rem;
@@ -93,7 +90,7 @@
                         var(--shadow-light-outer) 15%, 
                         transparent 30%, 
                         var(--shadow-dark-outer));
-            background-color: var(--color-bg-light);
+            background-color: var(--color-bg);
             background-position: -4rem -4rem;
             background-size: 200% 200%;
             box-shadow: var(--shadow-dark-outer) 0.33rem 0.33rem 0.6rem;
@@ -145,12 +142,12 @@
         }
         
         .neo-input {
-            background: var(--color-bg-light);
+            background: var(--color-bg);
             box-shadow: inset var(--shadow-dark-inner) 0.25rem 0.25rem 0.6rem,
                         inset var(--shadow-light-inner) -0.25rem -0.25rem 0.6rem;
             border-radius: 0.75rem;
             border: none;
-            color: var(--color-text-light);
+            color: var(--color-text);
             transition: box-shadow 0.15s ease-in-out;
         }
         
@@ -165,7 +162,7 @@
                         var(--shadow-light-outer), 
                         transparent, 
                         var(--shadow-dark-outer));
-            background-color: var(--color-bg-light);
+            background-color: var(--color-bg);
             box-shadow: var(--shadow-dark-outer) 0.33rem 0.33rem 0.6rem;
             border-radius: 1rem;
             border-left: 4px solid var(--color-accent);
@@ -188,29 +185,41 @@
             font-weight: 700;
         }
         
-        /* Dark sections */
-        .dark-section {
-            background: var(--color-bg-dark);
-            color: var(--color-text-dark);
+        /* Black header and footer */
+        .header-black {
+            background: var(--color-black);
+            color: var(--color-white);
         }
         
-        .dark-section .brand-text {
+        .header-black .brand-text {
+            color: var(--color-white);
+        }
+        
+        .footer-black {
+            background: var(--color-black);
+            color: var(--color-white);
+        }
+        
+        .footer-black .brand-text {
             color: var(--color-white);
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
-    <div class="max-w-7xl mx-auto px-4 py-8 md:py-16 flex-1 w-full">
-        <!-- Header -->
-        <header class="mb-8 pb-8">
+    <!-- Header -->
+    <header class="header-black py-8">
+        <div class="max-w-7xl mx-auto px-4">
             <h1 class="text-4xl md:text-5xl font-bold brand-text mb-3">samletnorge MCP Registry</h1>
-            <p class="text-lg mb-6" style="color: var(--color-text-secondary);">Discover Model Context Protocol servers</p>
+            <p class="text-lg mb-6" style="color: rgba(255, 255, 255, 0.8);">Discover Model Context Protocol servers</p>
             <div class="flex gap-6 text-sm">
                 <a href="https://github.com/samletnorge/registry" target="_blank" class="text-accent hover:underline font-medium">GitHub</a>
                 <a href="https://github.com/samletnorge/registry/tree/main/docs" target="_blank" class="text-accent hover:underline font-medium">Docs</a>
                 <a href="/docs" class="text-accent hover:underline font-medium">API Reference</a>
             </div>
-        </header>
+        </div>
+    </header>
+    
+    <div class="max-w-7xl mx-auto px-4 py-8 md:py-16 flex-1 w-full">
 
         <!-- Recently Updated -->
         <div id="recently-updated" class="hidden mb-8">
@@ -278,12 +287,12 @@
     </div>
 
     <!-- Footer -->
-    <footer class="mt-12 py-8 dark-section">
+    <footer class="mt-12 py-8 footer-black">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                 <div>
                     <h3 class="font-bold brand-text mb-2">samletnorge</h3>
-                    <p class="text-sm" style="color: var(--color-text-secondary-dark);">Building the future of Model Context Protocol server discovery.</p>
+                    <p class="text-sm" style="color: rgba(255, 255, 255, 0.7);">Building the future of Model Context Protocol server discovery.</p>
                 </div>
                 <div>
                     <h3 class="font-bold brand-text mb-2">Resources</h3>
@@ -302,7 +311,7 @@
                 </div>
             </div>
             <div class="border-t pt-4" style="border-color: rgba(255, 255, 255, 0.1);">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-3 text-sm" style="color: var(--color-text-secondary-dark);">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-3 text-sm" style="color: rgba(255, 255, 255, 0.7);">
                     <div>
                         © 2026 <span class="brand-text">samletnorge</span>. Powered by the MCP community.
                     </div>
